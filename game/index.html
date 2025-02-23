@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    body{
+        text-align: center;
+        background-color: slategrey;
+    }
+
+    #board {
+        display: none;
+        background-color: rgba(0, 0, 0, 0.9);
+        top: 50%;
+        left: 50%;
+        position: absolute;
+        transform: translate(-50%, -50%);
+    }
+
+    .pause {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: white;
+        background-color: rgb(17, 17, 17);
+        padding: 2rem;
+        border-radius: 2px;
+    }
+
+    .pause div button {
+        padding: 0.4rem 1rem;
+        font-size: 1rem;
+        font-weight: 700;
+        color: white;
+        cursor: pointer;
+    }
+
+    .pause div button:nth-of-type(1){
+        background-color: black;
+        border: 2px solid white;
+    }
+
+    .pause div button:nth-of-type(2){
+        background-color: red;
+        border: 2px solid white;
+    }   
+    
+    
+    .dashboard {
+        position: absolute;
+        display: flex;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgb(17, 17, 17);
+        text-align: left;
+        color: white;
+        padding: 1.5rem;
+        width: 22rem;
+        border-radius: 10px;
+    }
+
+
+
+    .dashboard div:nth-of-type(2){
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        margin-top: 2rem;
+        justify-content: center;
+        text-align: center;
+        align-items: center;
+    }
+
+    .dashboard div:nth-of-type(2) input {
+        height: 2.2rem;
+        border-radius: 5px;
+        padding-left: 1rem;
+        width: 20rem;
+    }
+
+    .dashboard div:nth-of-type(2) button {
+        width: 5rem;
+        height: 2rem;
+        font-size: 1.1rem;
+        font-weight: 700;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+        border: 2px solid;
+        cursor: pointer;
+        margin-top: 1rem;
+    }
+
+
+    .output {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        background-color: rgb(17, 17, 17);   
+        color: white;
+        padding: 1rem 5rem;
+        text-align: left;
+        border-radius: 5px;
+    }
+    
+
+    .output div {
+        margin-top: -0.5rem;
+    }
+
+    .output div p {
+        font-size: 1.5rem;
+        margin: 0;
+    }
+
+    .output button {
+        margin-top: 1rem;
+        padding: 0.2rem 0;
+        cursor: pointer;
+        font-size: 1.2rem;
+        border-radius: 5px;
+        background-color: red;
+        color: white;
+    }
+
+    .leaderboard {
+        position: absolute;
+        display: none;
+        flex-direction: column;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%,-50%);
+        color: white;
+        background-color: rgb(17, 17, 17);   
+        padding: 1rem 3rem;
+        text-align: left;
+    }
+
+    .leaderboard div p {
+        margin: 0.5rem;
+        font-size: 1.1rem;
+    }
+
+    .leaderboard button {
+        margin-top: 1rem;
+        background-color: red;
+        color: white;
+        border: 2px solid white;
+        border-radius: 5px;
+        padding: 0.3rem 1.5rem;
+        margin-left: 0.5rem;
+        cursor: pointer;
+    }
+</style>
+<body>
+    <canvas id="board"></canvas>
+    <div class="dashboard" id="dashboard">
+        <h1>Instruction Virus Slayer</h1>
+        <div>
+            <p>1. Input Username and Click Play</p>
+            <p>2. Destroy Virus With D F J K Key</p>
+            <p>3. Reach Hight Score</p>
+            <p>4. Enjoy!</p>
+        </div>
+        <div>
+            <form action="" onsubmit="event.preventDefault();gameboard.start()">
+                <input type="text" placeholder="Input Username" id="username-input">
+                <div>
+                    <button class="onsubmit">Play</button>
+                </div>
+            </form>
+            <button onclick="gameboard.displayLeaderboard()" style="background-color: blue; width: 8rem;">Leaderboard</button>
+        </div>
+    </div>
+    <div class="leaderboard" id="leaderboard">
+        <h1>Leaderboard</h1>
+        <div id="leaderboard-data">
+        </div>
+        <button onclick="gameboard.displayDashboard()">Exit</button>
+    </div>
+    <div class="pause" id="pause">
+        <h2>Pause</h2>
+        <div>
+            <button onclick="gameboard.continuePause()">Continue</button>
+            <button onclick="window.location.reload()">Exit</button>
+        </div>
+    </div>
+    <div class="output" id="output">
+        <h1>Game Over</h1>
+        <div>
+            <p id="player-name">Player : sigma</p>
+            <p id="player-score">Score : 80</p>
+        </div>
+        <button onclick="window.location.reload()">exit</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
